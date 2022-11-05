@@ -1,4 +1,5 @@
 import 'package:application1/presentation/registration/registration.dart';
+import 'package:application1/presentation/screenLogin/screenLogin.dart';
 import 'package:application1/theme/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,7 @@ class SplashScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RegistrationScreen()));
+                            builder: (context) => LoginScreen()));
                   },
                   child: Container(
                     height: 60,
