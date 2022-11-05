@@ -18,6 +18,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController location = TextEditingController();
+
+  final _namevalidationKey = GlobalKey<FormState>();
+  final _newpassvalidationkey = GlobalKey<FormState>();
+  final _mailvalidationKey = GlobalKey<FormState>();
+  final _confirmpassvalidationkey = GlobalKey<FormState>();
+  final _locationkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -48,65 +55,85 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 SizedBox(
                   height: 50,
                 ),
-                TextFormField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    hintText: 'Enter your full name',
-                    hintStyle: TT.f14w400Grey,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                Form(
+                  key: _namevalidationKey,
+                  child: TextFormField(
+                    validator: (value) => textValidator(value, "name"),
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your full name',
+                      hintStyle: TT.f14w400Grey,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 22,
                 ),
-                TextFormField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    hintText: 'Enter your email',
-                    hintStyle: TT.f14w400Grey,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                Form(
+                  key: _mailvalidationKey,
+                  child: TextFormField(
+                    validator: (value) => textValidator(value, 'mail ID'),
+                    controller: emailController,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your email',
+                      hintStyle: TT.f14w400Grey,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 22,
                 ),
-                TextFormField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    hintText: 'Enter your password',
-                    hintStyle: TT.f14w400Grey,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                Form(
+                  key: _newpassvalidationkey,
+                  child: TextFormField(
+                    validator: (value) => textValidator(value, 'password'),
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your password',
+                      hintStyle: TT.f14w400Grey,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 22,
                 ),
-                TextFormField(
-                  controller: confirmPasswordController,
-                  decoration: InputDecoration(
-                    hintText: 'Confirm your password',
-                    hintStyle: TT.f14w400Grey,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                Form(
+                  key: _confirmpassvalidationkey,
+                  child: TextFormField(
+                    validator: (value) => textValidator(value, 'confirm pass'),
+                    controller: confirmPasswordController,
+                    decoration: InputDecoration(
+                      hintText: 'Confirm your password',
+                      hintStyle: TT.f14w400Grey,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 22,
                 ),
-                TextFormField(
-                  controller: location,
-                  decoration: InputDecoration(
-                    hintText: 'Your Location',
-                    hintStyle: TT.f14w400Grey,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                Form(
+                  key: _locationkey,
+                  child: TextFormField(
+                    validator: (value) => textValidator(value, location),
+                    controller: location,
+                    decoration: InputDecoration(
+                      hintText: 'Your Location',
+                      hintStyle: TT.f14w400Grey,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
                 ),
@@ -115,10 +142,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DashBoardScreen()));
+                    if (_namevalidationKey.currentState!.validate() &&
+                        _mailvalidationKey.currentState!.validate() &&
+                        _newpassvalidationkey.currentState!.validate() &&
+                        _confirmpassvalidationkey.currentState!.validate()) {
+                      onRegistration(context);
+                    }
                   },
                   child: Container(
                     height: 50,
@@ -164,5 +193,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       ),
     );
+  }
+
+  textValidator(value, fieldName) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a $fieldName';
+    } 
+    if (fieldName == 'confirmpass') {
+      if (value != confirmPasswordController.text) {
+        return 'Passwords do not match';
+      }
+    }
+    return null;
+  }
+
+  onRegistration(context) {
+    return Navigator.push(
+        context, MaterialPageRoute(builder: (context) => DashBoardScreen()));
   }
 }
