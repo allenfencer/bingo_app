@@ -17,7 +17,10 @@ class SplashScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("BINGO"),
+                Text(
+                  "BINGO",
+                  style: TT.f36w700,
+                ),
                 SizedBox(
                   height: 40,
                 ),
@@ -38,14 +41,19 @@ class SplashScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LoginScreen()));
+                            builder: (context) => RegistrationScreen()));
                   },
                   child: Container(
-                    height: 60,
-                    decoration: BoxDecoration(color: Color(0xff37B943)),
+                    height: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        color: Color(0xff37B943)),
                     alignment: Alignment.center,
                     width: MediaQuery.of(context).size.width,
-                    child: Text('Get Started'),
+                    child: Text(
+                      'Get Started',
+                      style: TT.f18w700White,
+                    ),
                   ),
                 ),
               ],
