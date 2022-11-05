@@ -5,13 +5,15 @@ class RegistrationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 28),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextFormField()
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 28),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [TextFormField()],
+          ),
+        ),
       ),
     );
   }
