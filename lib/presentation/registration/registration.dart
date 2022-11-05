@@ -1,5 +1,9 @@
+import 'package:application1/presentation/dashboard/dashboard.dart';
 import 'package:application1/theme/styles.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import '../screenLogin/screenLogin.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -48,7 +52,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   controller: nameController,
                   decoration: InputDecoration(
                     hintText: 'Enter your full name',
-                    hintStyle: TT.f14w400,
+                    hintStyle: TT.f14w400Grey,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -58,10 +62,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   height: 22,
                 ),
                 TextFormField(
-                  controller: nameController,
+                  controller: emailController,
                   decoration: InputDecoration(
                     hintText: 'Enter your email',
-                    hintStyle: TT.f14w400,
+                    hintStyle: TT.f14w400Grey,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -71,10 +75,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   height: 22,
                 ),
                 TextFormField(
-                  controller: nameController,
+                  controller: passwordController,
                   decoration: InputDecoration(
                     hintText: 'Enter your password',
-                    hintStyle: TT.f14w400,
+                    hintStyle: TT.f14w400Grey,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -84,10 +88,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   height: 22,
                 ),
                 TextFormField(
-                  controller: nameController,
+                  controller: confirmPasswordController,
                   decoration: InputDecoration(
                     hintText: 'Confirm your password',
-                    hintStyle: TT.f14w400,
+                    hintStyle: TT.f14w400Grey,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -97,10 +101,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   height: 22,
                 ),
                 TextFormField(
-                  controller: nameController,
+                  controller: location,
                   decoration: InputDecoration(
                     hintText: 'Your Location',
-                    hintStyle: TT.f14w400,
+                    hintStyle: TT.f14w400Grey,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -114,7 +118,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => RegistrationScreen()));
+                            builder: (context) => DashBoardScreen()));
                   },
                   child: Container(
                     height: 50,
@@ -132,14 +136,28 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 SizedBox(
                   height: 22,
                 ),
-                RichText(
-                    text: TextSpan(children: [
-                  TextSpan(text: 'Already have an account?  ', style: TT.f14w400),
-                  TextSpan(
-            
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DashBoardScreen()));
+                  },
+                  child: RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                        text: 'Already have an account?  ', style: TT.f14w400),
+                    TextSpan(
                       text: 'Login',
-                      style: TT.f14w400.copyWith(color: Color(0xff37B943)))
-                ]))
+                      style: TT.f14w400.copyWith(color: Color(0xff37B943)),
+                      recognizer: new TapGestureRecognizer()
+                        ..onTap = () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen())),
+                    )
+                  ])),
+                )
               ],
             ),
           ),
