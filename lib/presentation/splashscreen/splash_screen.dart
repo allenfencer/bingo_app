@@ -37,10 +37,10 @@ class SplashScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => RegistrationScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RegistrationScreen()));
                   },
                   child: Container(
                     height: 50,
