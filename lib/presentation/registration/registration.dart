@@ -136,6 +136,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     text: TextSpan(children: [
                   TextSpan(text: 'Already have an account?  ', style: TT.f14w400),
                   TextSpan(
+            
                       text: 'Login',
                       style: TT.f14w400.copyWith(color: Color(0xff37B943)))
                 ]))

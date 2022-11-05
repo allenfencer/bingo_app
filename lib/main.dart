@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BinGO',
-      home: SplashScreen(),
+      home: LoginScreen(),
     );
   }
 }
