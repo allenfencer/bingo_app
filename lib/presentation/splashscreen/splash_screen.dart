@@ -19,7 +19,7 @@ class SplashScreen extends StatelessWidget {
             SizedBox(
               height: 40,
             ),
-            Image.asset(''),
+            Image.asset('assets/images/splashscreen_logo.png'),
             SizedBox(
               height: 20,
             ),
