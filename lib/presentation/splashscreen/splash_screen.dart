@@ -1,0 +1,53 @@
+import 'package:application1/presentation/registration/registration.dart';
+import 'package:application1/theme/styles.dart';
+import 'package:flutter/material.dart';
+
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+          body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 28),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text("BINGO"),
+            SizedBox(
+              height: 40,
+            ),
+            Image.asset(''),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Wasty is all about waste management. Here you’ll able to contact your nearest vendors.',
+              style: TT.f14w400,
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RegistrationScreen()));
+              },
+              child: Container(
+                height: 60,
+                decoration: BoxDecoration(color: Color(0xff37B943)),
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width,
+                child: Text('Get Started'),
+              ),
+            ),
+          ],
+        ),
+      )),
+    );
+  }
+}
