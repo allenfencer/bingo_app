@@ -1,5 +1,8 @@
 import 'package:application1/presentation/dashboard/dashboard.dart';
 import 'package:application1/presentation/dashboard/garbage_detail_screen.dart';
+import 'package:application1/presentation/dashboard/garbage_collect_receipt.dart';
+import 'package:application1/presentation/dashboard/garbage_detail_screen.dart';
+import 'package:application1/presentation/profile/profile.dart';
 import 'package:application1/presentation/screenLogin/screenLogin.dart';
 import 'package:application1/presentation/splashscreen/splash_screen.dart';
 import 'package:flutter/material.dart';
