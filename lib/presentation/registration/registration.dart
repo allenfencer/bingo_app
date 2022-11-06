@@ -54,7 +54,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   'Welcome to',
                   style: TT.f14w600,
                 ),
-                Image.asset('assets/images/bingoMainLogo.png', height: 85, width: 147,),
+                Image.asset(
+                  'assets/images/bingoMainLogo.png',
+                  height: 85,
+                  width: 147,
+                ),
                 SizedBox(
                   height: 30,
                 ),
@@ -63,7 +67,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   style: TT.f14w400,
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 3,),
+                SizedBox(
+                  height: 3,
+                ),
                 Text(
                   'Comeon, fill this out.',
                   style: TT.f14w400,
@@ -95,7 +101,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Form(
                   key: _mailvalidationKey,
                   child: TextFormField(
-                    
                     validator: (value) => textValidator(value, 'mail ID'),
                     controller: emailController,
                     decoration: InputDecoration(
@@ -137,13 +142,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   key: _confirmpassvalidationkey,
                   child: TextFormField(
                     validator: (value) {
-                      if (value == null || value.isEmpty) { //|| value != passwordController.value.text
+                      if (value == null || value.isEmpty) {
+                        //|| value != passwordController.value.text
                         return 'Please enter a phone number';
                       }
                       return null;
                     },
                     controller: phoneController,
-                  keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Color(0xffEEEEEE),
@@ -186,7 +192,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         _newpassvalidationkey.currentState!.validate() &&
                         _confirmpassvalidationkey.currentState!.validate() &&
                         _locationkey.currentState!.validate()) {
-                        await updateDataToServer();
+                      await updateDataToServer();
                       onRegistration(context);
                     }
                   },
@@ -196,7 +202,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         borderRadius: BorderRadius.circular(50),
                         color: Color(0xffAAFF03)),
                     alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width*0.7,
+                    width: MediaQuery.of(context).size.width * 0.7,
                     child: Text(
                       'Register',
                       style: TT.f18w600,
@@ -206,23 +212,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 SizedBox(
                   height: 22,
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: RichText(
-                      text: TextSpan(children: [
-                    TextSpan(
-                        text: 'Already have an account?  ', style: TT.f14w400),
-                    TextSpan(
-                      text: 'Login',
-                      style: TT.f14w400.copyWith(color: Color(0xff37B943)),
-                        recognizer: new TapGestureRecognizer()
-                        ..onTap = () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginScreen())),
-                    )
-                  ])),
-                )
+                RichText(
+                    text: TextSpan(children: [
+                  TextSpan(
+                      text: 'Already have an account?  ', style: TT.f14w400),
+                  TextSpan(
+                    text: 'Login',
+                    style: TT.f14w400.copyWith(color: Color(0xff37B943)),
+                    recognizer: new TapGestureRecognizer()
+                      ..onTap = () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen())),
+                  )
+                ]))
               ],
             ),
           ),
