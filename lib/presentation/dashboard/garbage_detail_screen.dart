@@ -1,3 +1,4 @@
+import 'package:application1/presentation/address/address_screen.dart';
 import 'package:application1/theme/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,27 @@ class _GarbageDetailScreenState extends State<GarbageDetailScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        bottomNavigationBar: Container(
+          height: 70,
+          alignment: Alignment.centerRight,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddressScreen()));
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 30),
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              decoration: BoxDecoration(
+                  color: Color(0xffAAFF03),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Text(
+                'Proceed',
+                style: TT.f18w600,
+              ),
+            ),
+          ),
+        ),
         body: Container(
           width: double.infinity,
           height: MediaQuery.of(context).size.height,
