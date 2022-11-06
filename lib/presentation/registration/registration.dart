@@ -216,7 +216,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 22,
+                  height: 28,
                 ),
                 RichText(
                     text: TextSpan(children: [
@@ -231,7 +231,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           MaterialPageRoute(
                               builder: (context) => LoginScreen())),
                   )
-                ]))
+                ])),
+                SizedBox(
+                  height: 40,
+                ),
               ],
             ),
           ),
