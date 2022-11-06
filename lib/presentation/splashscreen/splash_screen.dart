@@ -17,7 +17,11 @@ class SplashScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset('assets/images/bingoMainLogo.png',height: 120,width: 276,),
+                Image.asset(
+                  'assets/images/bingoMainLogo.png',
+                  height: 120,
+                  width: 276,
+                ),
                 SizedBox(
                   height: 10,
                 ),
