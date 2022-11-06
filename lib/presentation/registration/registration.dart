@@ -109,7 +109,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Form(
                   key: _confirmpassvalidationkey,
                   child: TextFormField(
-                    validator: (value) => textValidator(value, 'confirm pass'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty || value != passwordController.value.text) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
                     controller: confirmPasswordController,
                     decoration: InputDecoration(
                       hintText: 'Confirm your password',
@@ -145,7 +150,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     if (_namevalidationKey.currentState!.validate() &&
                         _mailvalidationKey.currentState!.validate() &&
                         _newpassvalidationkey.currentState!.validate() &&
-                        _confirmpassvalidationkey.currentState!.validate()) {
+                        _confirmpassvalidationkey.currentState!.validate() &&
+                        _locationkey.currentState!.validate()) {
                       onRegistration(context);
                     }
                   },
@@ -198,12 +204,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   textValidator(value, fieldName) {
     if (value == null || value.isEmpty) {
       return 'Please enter a $fieldName';
-    } 
-    if (fieldName == 'confirmpass') {
-      if (value != confirmPasswordController.text) {
-        return 'Passwords do not match';
-      }
     }
+
     return null;
   }
 
