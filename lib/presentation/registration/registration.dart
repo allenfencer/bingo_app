@@ -1,4 +1,5 @@
 import 'package:application1/presentation/dashboard/dashboard.dart';
+import 'package:application1/services/create_user_api.dart';
 import 'package:application1/theme/styles.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
+
+  Future updateDataToServer() async {
+    await CreateUserApi().createUser(nameController.text, emailController.text,
+        phoneController.text, passwordController.text, locationController.text);
+  }
+
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController location = TextEditingController();
 
@@ -115,9 +124,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       }
                       return null;
                     },
-                    controller: confirmPasswordController,
+                    controller: phoneController,
+                  keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      hintText: 'Confirm your password',
+                      hintText: 'Enter your phone number',
                       hintStyle: TT.f14w400Grey,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -132,7 +142,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   key: _locationkey,
                   child: TextFormField(
                     validator: (value) => textValidator(value, location),
-                    controller: location,
+                    controller: locationController,
                     decoration: InputDecoration(
                       hintText: 'Your Location',
                       hintStyle: TT.f14w400Grey,
