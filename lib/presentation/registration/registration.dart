@@ -43,6 +43,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 28),
           child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,

@@ -1,3 +1,5 @@
+import 'package:application1/presentation/address/address_screen.dart';
+import 'package:application1/presentation/dashboard/garbage_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -6,26 +8,39 @@ import 'package:flutter/widgets.dart';
 import '../../theme/styles.dart';
 
 class GarbageReceiptScreen extends StatelessWidget {
-  const GarbageReceiptScreen({Key? key}) : super(key: key);
+  final List eachGarbageItem;
+  const GarbageReceiptScreen({Key? key, required this.eachGarbageItem})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var type = ['E-waste', 'glass', 'paper', 'E-waste', 'glass', 'paper'];
-    var quantity = ['1', '1', '3', '1', '1', '3'];
+    final List garbageType = [
+      'E-Waste',
+      'Plastic',
+      'Metal',
+      'Glass',
+      'Paper',
+      'Organic'
+    ];
+
+    double total = 0;
+
     return SafeArea(
         child: Scaffold(
       body: Container(
-        width: double.infinity,
+        width: double.maxFinite,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           image: DecorationImage(
+            alignment: Alignment.topCenter,
             image: AssetImage('assets/images/garbage_detail_bg.png'),
-            fit: BoxFit.cover,
+            fit: BoxFit.fitWidth,
           ),
         ),
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Container(
-            margin: EdgeInsets.only(top: 250),
+            margin: EdgeInsets.only(top: 200),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -35,74 +50,96 @@ class GarbageReceiptScreen extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Image.asset('assets/images/takeAwayImg.png'),
+                Image.asset(
+                  'assets/images/takeAwayImg.png',
+                  height: 180,
+                ),
                 Container(
-                  height: 170,
-                  width: 304,
+                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
                   child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       padding: const EdgeInsets.all(8),
-                      itemCount: type.length,
+                      itemCount: garbageType.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                          height: 50,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
-                            child: Container(
-                              height: 55,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Color(0xff669902)),
-                                  borderRadius: BorderRadius.circular(11)),
-                              alignment: Alignment.center,
-                              child: ListTile(
-                                leading: Text(
-                                  '${index+1}.',
-                                  style: TT.f18w600
-                                      .copyWith(color: Color(0xff669902)),
-                                ),
-                                title: Text('${type[index]}',
-                                    style: TT.f18w600
-                                        .copyWith(color: Color(0xff669902))),
-                                trailing: Text('${quantity[index]}',
-                                    style: TT.f18w600
-                                        .copyWith(color: Color(0xff669902))),
-                              ),
+                          margin: EdgeInsets.only(bottom: 10),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Color(0xff669902)),
+                              borderRadius: BorderRadius.circular(11)),
+                          // alignment: Alignment.center,
+                          child: ListTile(
+                            leading: Text(
+                              '${index + 1}.',
+                              style:
+                                  TT.f18w600.copyWith(color: Color(0xff669902)),
                             ),
+                            title: Text('${garbageType[index]}',
+                                style: TT.f18w600
+                                    .copyWith(color: Color(0xff669902))),
+                            trailing: Text('${eachGarbageItem[index]}',
+                                style: TT.f18w600
+                                    .copyWith(color: Color(0xff669902))),
                           ),
                         );
                       }),
                 ),
-                Text('Grand Total: 215\$', style: TT.f25w600.copyWith(fontStyle: FontStyle.italic),),
-                SizedBox(height: 40,),
+                Text(
+                  'Grand Total: 200 Rs',
+                  style: TT.f18w700,
+                ),
+                SizedBox(
+                  height: 40,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                  Container(
-                    height: 59,
-                    width: 144,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: Color(0xffAAFF03)),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Add More',
-                      style: TT.f18w600,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GarbageDetailScreen()));
+                      },
+                      child: Container(
+                        height: 59,
+                        width: 144,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: Color(0xffAAFF03)),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Add More',
+                          style: TT.f18w600,
+                        ),
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 59,
-                    width: 144,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: Color(0xffAAFF03)),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Proceed',
-                      style: TT.f18w600,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddressScreen()));
+                      },
+                      child: Container(
+                        height: 59,
+                        width: 144,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: Color(0xffAAFF03)),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Proceed',
+                          style: TT.f18w600,
+                        ),
+                      ),
                     ),
-                  ),
-                ],),
-                SizedBox(height: 10,)
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                )
               ],
             ),
           ),

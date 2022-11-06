@@ -1,4 +1,5 @@
 import 'package:application1/presentation/address/address_screen.dart';
+import 'package:application1/presentation/dashboard/garbage_collect_receipt.dart';
 import 'package:application1/theme/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -26,8 +27,19 @@ class _GarbageDetailScreenState extends State<GarbageDetailScreen> {
           alignment: Alignment.centerRight,
           child: GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AddressScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => GarbageReceiptScreen(
+                            eachGarbageItem: [
+                              e_waste,
+                              plastic,
+                              metal,
+                              glass,
+                              paper,
+                              organic
+                            ],
+                          )));
             },
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 30),
@@ -47,13 +59,15 @@ class _GarbageDetailScreenState extends State<GarbageDetailScreen> {
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             image: DecorationImage(
+              alignment: Alignment.topCenter,
               image: AssetImage('assets/images/garbage_detail_bg.png'),
-              fit: BoxFit.cover,
+              fit: BoxFit.fitWidth,
             ),
           ),
           child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Container(
-              margin: EdgeInsets.only(top: 250),
+              margin: EdgeInsets.only(top: 200),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(

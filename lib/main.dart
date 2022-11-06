@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BinGO',
-      home: ProcessingScreen(),
+      home: DashBoardScreen(),
     );
   }
 }

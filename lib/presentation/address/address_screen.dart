@@ -17,17 +17,19 @@ class _AddressScreenState extends State<AddressScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: double.infinity,
+        width: double.maxFinite,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           image: DecorationImage(
+            alignment: Alignment.topCenter,
             image: AssetImage('assets/images/garbage_detail_bg.png'),
-            fit: BoxFit.cover,
+            fit: BoxFit.fitWidth,
           ),
         ),
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Container(
-            margin: EdgeInsets.only(top: 250),
+            margin: EdgeInsets.only(top: 200),
             padding: EdgeInsets.symmetric(horizontal: 25),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -125,7 +127,7 @@ class _AddressScreenState extends State<AddressScreen> {
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.green),
                               color:
-                                  currentINdex == 0 ? Color(0xff669902) : null,
+                                  currentINdex == 0 ? Color(0xffAAFF03) : null,
                               borderRadius: BorderRadius.circular(10)),
                           child: Text(
                             'Morning',
