@@ -1,3 +1,4 @@
+import 'package:application1/presentation/dashboard/dashboard.dart';
 import 'package:application1/presentation/screenLogin/screenLogin.dart';
 import 'package:application1/presentation/splashscreen/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BinGO',
-      home: SplashScreen(),
+      home: DashBoardScreen(),
     );
   }
 }
