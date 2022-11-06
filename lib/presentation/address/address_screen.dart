@@ -125,7 +125,7 @@ class _AddressScreenState extends State<AddressScreen> {
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.green),
                               color:
-                                  currentINdex == 0 ? Color(0xffAAFF03) : null,
+                                  currentINdex == 0 ? Color(0xff669902) : null,
                               borderRadius: BorderRadius.circular(10)),
                           child: Text(
                             'Morning',

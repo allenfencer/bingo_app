@@ -1,5 +1,6 @@
 import 'package:application1/presentation/dashboard/garbage_detail_screen.dart';
 import 'package:application1/theme/styles.dart';
+import 'package:application1/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 
 class DashBoardScreen extends StatefulWidget {
@@ -15,6 +16,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: dashboardAppbar(context),
         resizeToAvoidBottomInset: true,
         bottomNavigationBar: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -96,7 +99,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 ),
                 Image.asset(
                   'assets/images/dashboardPic.png',
-                  height: 150,
+                  height: 200,
                 ),
                 SizedBox(
                   height: 49,
