@@ -1,3 +1,4 @@
+import 'package:application1/presentation/dashboard/processing_Screen.dart';
 import 'package:application1/theme/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,11 @@ class _AddressScreenState extends State<AddressScreen> {
   TextEditingController addressController = TextEditingController();
   TextEditingController pincodeController = TextEditingController();
   int currentINdex = 0;
+
+  final _adressState = GlobalKey<FormState>();
+  final _pincodeField = GlobalKey<FormState>();
+  final _landMarkField = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -57,45 +63,58 @@ class _AddressScreenState extends State<AddressScreen> {
                 SizedBox(
                   height: 30,
                 ),
-                TextField(
-                  controller: addressController,
-                  maxLines: 3,
-                  decoration: InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    hintText: 'Address',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                Form(
+                  key: _adressState,
+                  child: TextFormField(
+                    validator: (value) => textValidator(value, "name"),
+
+                    controller: addressController,
+                    maxLines: 3,
+                    decoration: InputDecoration(
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      hintText: 'Address',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 30,
                 ),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: pincodeController,
-                  decoration: InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    hintText: 'Pincode',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                Form(
+                  key: _pincodeField,
+                  child: TextFormField(
+                    validator: (value) => textValidator(value, "pincode"),
+                    keyboardType: TextInputType.number,
+                    controller: pincodeController,
+                    decoration: InputDecoration(
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      hintText: 'Pincode',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 30,
                 ),
-                TextField(
-                  controller: addressController,
-                  maxLines: 3,
-                  decoration: InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    hintText: 'Landmark',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
+                Form(
+                  key: _landMarkField,
+                  child: TextFormField(
+                    validator: (value) => textValidator(value, "landmark"),
+                    controller: addressController,
+                    maxLines: 3,
+                    decoration: InputDecoration(
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      hintText: 'Landmark',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
                   ),
                 ),
@@ -167,7 +186,11 @@ class _AddressScreenState extends State<AddressScreen> {
                   height: 30,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    if(_adressState.currentState!.validate() && _landMarkField.currentState!.validate() && _pincodeField.currentState!.validate()){
+                      onButtonClick(context);
+                    }
+                  },
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
@@ -190,5 +213,15 @@ class _AddressScreenState extends State<AddressScreen> {
         ),
       ),
     );
+  }
+  textValidator(value, fieldName){
+    if(value == null || value.isEmpty){
+      return "Please enter a $fieldName";
+    }
+    return null;
+  }
+  onButtonClick(context) {
+    return Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => ProcessingScreen()));
   }
 }
