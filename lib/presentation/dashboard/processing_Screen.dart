@@ -1,8 +1,5 @@
 import 'package:application1/theme/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
 
 class ProcessingScreen extends StatelessWidget {
   const ProcessingScreen({Key? key}) : super(key: key);
