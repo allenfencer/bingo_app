@@ -85,6 +85,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     controller: nameController,
                     decoration: InputDecoration(
                       filled: true,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 30),
                       fillColor: Color(0xffEEEEEE),
                       hintText: 'Enter your full name',
                       hintStyle: TT.f14w400Grey,
@@ -105,6 +106,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     controller: emailController,
                     decoration: InputDecoration(
                       filled: true,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 30),
                       fillColor: Color(0xffEEEEEE),
                       hintText: 'Enter your email',
                       hintStyle: TT.f14w400Grey,
@@ -123,8 +125,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   child: TextFormField(
                     validator: (value) => textValidator(value, 'password'),
                     controller: passwordController,
+                    obscureText: true,
                     decoration: InputDecoration(
                       filled: true,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 30),
                       fillColor: Color(0xffEEEEEE),
                       hintText: 'Enter your password',
                       hintStyle: TT.f14w400Grey,
@@ -155,6 +159,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       fillColor: Color(0xffEEEEEE),
                       hintText: 'Enter your phone number',
                       hintStyle: TT.f14w400Grey,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 30),
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(50),
@@ -172,6 +177,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     controller: locationController,
                     decoration: InputDecoration(
                       filled: true,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 30),
                       fillColor: Color(0xffEEEEEE),
                       hintText: 'Your Location',
                       hintStyle: TT.f14w400Grey,
@@ -243,7 +249,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   onRegistration(context) {
-    return Navigator.push(
+    return Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => DashBoardScreen()));
   }
 }

@@ -4,7 +4,7 @@ import 'dart:developer';
 
 class LoginApi {
   Future loginUser(String email, String password) async {
-    String url = '';
+    String url = 'https://bingo-backend1.herokuapp.com/api/v1/users/login';
     try {
       final dio = Dio();
       final response =
