@@ -1,7 +1,11 @@
 import 'package:application1/presentation/dashboard/dashboard.dart';
 import 'package:application1/services/create_user_api.dart';
 import 'package:application1/theme/styles.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+import '../screenLogin/screenLogin.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -22,6 +26,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         phoneController.text, passwordController.text, locationController.text);
   }
 
+  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController location = TextEditingController();
+
+  final _namevalidationKey = GlobalKey<FormState>();
+  final _newpassvalidationkey = GlobalKey<FormState>();
+  final _mailvalidationKey = GlobalKey<FormState>();
+  final _confirmpassvalidationkey = GlobalKey<FormState>();
+  final _locationkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,80 +51,128 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   height: 80,
                 ),
                 Text(
-                  'Welcome to BinGO',
-                  style: TT.f18w700,
+                  'Welcome to',
+                  style: TT.f14w600,
                 ),
+                Image.asset('assets/images/bingoMainLogo.png', height: 85, width: 147,),
                 SizedBox(
                   height: 30,
                 ),
                 Text(
-                  'How you manage your waste? If don’t then staart from now!',
+                  'Let’s get you in first.',
+                  style: TT.f14w400,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 3,),
+                Text(
+                  'Comeon, fill this out.',
                   style: TT.f14w400,
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
                   height: 50,
                 ),
-                TextFormField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    hintText: 'Enter your full name',
-                    hintStyle: TT.f14w400Grey,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                Form(
+                  key: _namevalidationKey,
+                  child: TextFormField(
+                    validator: (value) => textValidator(value, "name"),
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xffEEEEEE),
+                      hintText: 'Enter your full name',
+                      hintStyle: TT.f14w400Grey,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 22,
                 ),
-                TextFormField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    hintText: 'Enter your email',
-                    hintStyle: TT.f14w400Grey,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                Form(
+                  key: _mailvalidationKey,
+                  child: TextFormField(
+                    
+                    validator: (value) => textValidator(value, 'mail ID'),
+                    controller: emailController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xffEEEEEE),
+                      hintText: 'Enter your email',
+                      hintStyle: TT.f14w400Grey,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 22,
                 ),
-                TextFormField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    hintText: 'Enter your password',
-                    hintStyle: TT.f14w400Grey,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                Form(
+                  key: _newpassvalidationkey,
+                  child: TextFormField(
+                    validator: (value) => textValidator(value, 'password'),
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xffEEEEEE),
+                      hintText: 'Enter your password',
+                      hintStyle: TT.f14w400Grey,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 22,
                 ),
-                TextFormField(
-                  controller: phoneController,
+                Form(
+                  key: _confirmpassvalidationkey,
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) { //|| value != passwordController.value.text
+                        return 'Please enter a phone number';
+                      }
+                      return null;
+                    },
+                    controller: phoneController,
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: 'Enter your phone number',
-                    hintStyle: TT.f14w400Grey,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xffEEEEEE),
+                      hintText: 'Enter your phone number',
+                      hintStyle: TT.f14w400Grey,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 22,
                 ),
-                TextFormField(
-                  controller: locationController,
-                  decoration: InputDecoration(
-                    hintText: 'Your Location',
-                    hintStyle: TT.f14w400Grey,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                Form(
+                  key: _locationkey,
+                  child: TextFormField(
+                    validator: (value) => textValidator(value, 'location'),
+                    controller: locationController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xffEEEEEE),
+                      hintText: 'Your Location',
+                      hintStyle: TT.f14w400Grey,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ),
                   ),
                 ),
@@ -120,26 +181,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    await updateDataToServer();
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DashBoardScreen()));
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DashBoardScreen()));
+                    if (_namevalidationKey.currentState!.validate() &&
+                        _mailvalidationKey.currentState!.validate() &&
+                        _newpassvalidationkey.currentState!.validate() &&
+                        _confirmpassvalidationkey.currentState!.validate() &&
+                        _locationkey.currentState!.validate()) {
+                        await updateDataToServer();
+                      onRegistration(context);
+                    }
                   },
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(2),
-                        color: Color(0xff37B943)),
+                        borderRadius: BorderRadius.circular(50),
+                        color: Color(0xffAAFF03)),
                     alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery.of(context).size.width*0.7,
                     child: Text(
                       'Register',
-                      style: TT.f18w700White,
+                      style: TT.f18w600,
                     ),
                   ),
                 ),
@@ -153,8 +213,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     TextSpan(
                         text: 'Already have an account?  ', style: TT.f14w400),
                     TextSpan(
-                        text: 'Login',
-                        style: TT.f14w400.copyWith(color: Color(0xff37B943)))
+                      text: 'Login',
+                      style: TT.f14w400.copyWith(color: Color(0xff37B943)),
+                        recognizer: new TapGestureRecognizer()
+                        ..onTap = () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen())),
+                    )
                   ])),
                 )
               ],
@@ -163,5 +229,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       ),
     );
+  }
+
+  textValidator(value, fieldName) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a $fieldName';
+    }
+
+    return null;
+  }
+
+  onRegistration(context) {
+    return Navigator.push(
+        context, MaterialPageRoute(builder: (context) => DashBoardScreen()));
   }
 }
