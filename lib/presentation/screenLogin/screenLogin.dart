@@ -1,4 +1,6 @@
+import 'package:application1/presentation/dashboard/dashboard.dart';
 import 'package:application1/presentation/registration/registration.dart';
+import 'package:application1/services/login_api.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _mailvalidationKey = GlobalKey<FormState>();
   final _passvalidationkey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  loginCurrentUser(String email, String password) async {
+    await LoginApi().loginUser(email, password);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Form(
                     key: _mailvalidationKey,
                     child: TextFormField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         filled: true,
                         contentPadding: EdgeInsets.symmetric(horizontal: 30),
@@ -64,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     key: _passvalidationkey,
                     child: TextFormField(
                       obscureText: true,
+                      controller: passwordController,
                       validator: (value) => textValidator(value, 'password'),
                       decoration: InputDecoration(
                         filled: true,
@@ -88,16 +98,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20,
                   ),
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       if (_mailvalidationKey.currentState!.validate()) {
                         if (_passvalidationkey.currentState!.validate()) {
                           onLogin(context);
+                          await loginCurrentUser(
+                              emailController.text, passwordController.text);
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DashBoardScreen()));
                         }
                       }
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => DashBoard()));
                     },
                     child: Container(
                       height: 60,
@@ -113,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 40,
                   ),
                   RichText(
                       text: TextSpan(children: [
@@ -123,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: 'Sign up',
                         style: TT.f14w600.copyWith(color: Color(0xff84C800)),
                         recognizer: new TapGestureRecognizer()
-                          ..onTap = () => Navigator.push(
+                          ..onTap = () => Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => RegistrationScreen())))
@@ -144,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   onLogin(context) {
     return ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Processing Data')),
+      const SnackBar(content: Text('Logging in user')),
     );
   }
 }

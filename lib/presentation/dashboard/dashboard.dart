@@ -1,3 +1,4 @@
+import 'package:application1/presentation/dashboard/garbage_detail_screen.dart';
 import 'package:application1/theme/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -15,39 +16,43 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        bottomNavigationBar:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Container(
-              height: 70,
-              child: SizedBox(
-                width: 250,
-                child: TextFormField(
-                  controller: locationSearchController,
-                  decoration: InputDecoration(
-                    prefixIcon: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.location_on,
+        bottomNavigationBar: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  child: SizedBox(
+                    width: 250,
+                    child: TextFormField(
+                      controller: locationSearchController,
+                      decoration: InputDecoration(
+                        prefixIcon: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.location_on,
+                          ),
+                        ),
+                        hintText: 'Search location',
+                        hintStyle: TT.f14w400Grey,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                        ),
                       ),
                     ),
-                    hintText: 'Search location',
-                    hintStyle: TT.f14w400Grey,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: Colors.grey, width: 2),
-                    ),
-                  ),
-                ),
-              )),
-          // SizedBox(
-          //   width: 30,
-          // ),
-          Container(
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30), color: Colors.grey),
-              child: Icon(Icons.person)),
-        ]),
+                  )),
+              // SizedBox(
+              //   width: 30,
+              // ),
+              Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xffAAFF03), width: 2),
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.white),
+                  child: Icon(Icons.person)),
+            ]),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 30),
           child: SingleChildScrollView(
@@ -96,16 +101,24 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 SizedBox(
                   height: 49,
                 ),
-                Container(
-                  height: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Color(0xffAAFF03)),
-                  alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  child: Text(
-                    'Clear the bin',
-                    style: TT.f18w600,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => GarbageDetailScreen()));
+                  },
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Color(0xffAAFF03)),
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: Text(
+                      'Clear the bin',
+                      style: TT.f18w600,
+                    ),
                   ),
                 ),
                 SizedBox(

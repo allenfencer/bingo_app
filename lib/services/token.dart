@@ -5,4 +5,6 @@ class Token{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('token', token);
   }
+
+  
 }

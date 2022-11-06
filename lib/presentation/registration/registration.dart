@@ -249,7 +249,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   onRegistration(context) {
-    return Navigator.push(
+    return Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => DashBoardScreen()));
   }
 }
