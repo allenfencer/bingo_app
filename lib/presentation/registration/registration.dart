@@ -119,7 +119,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   height: 30,
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    await updateDataToServer();
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DashBoardScreen()));
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -142,12 +147,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   height: 22,
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DashBoardScreen()));
-                  },
+                  onTap: () {},
                   child: RichText(
                       text: TextSpan(children: [
                     TextSpan(
