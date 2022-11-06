@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 class TT {
   static const TextStyle f14w400 =
       TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.black);
+  static const TextStyle f25w600 =
+      TextStyle(fontSize: 25, fontWeight: FontWeight.w600, color: Colors.black);
+  
   static const TextStyle f37w600 =
       TextStyle(fontSize: 37, fontWeight: FontWeight.w600, color: Colors.black);
   static const TextStyle f32w400 =
