@@ -15,27 +15,39 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        bottomNavigationBar: Container(
-            padding: EdgeInsets.symmetric(horizontal: 32, vertical: 10),
-            alignment: Alignment.center,
-            height: 70,
-            child: TextFormField(
-              controller: locationSearchController,
-              decoration: InputDecoration(
-                prefixIcon: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.location_on,
+        bottomNavigationBar:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Container(
+              height: 70,
+              child: SizedBox(
+                width: 250,
+                child: TextFormField(
+                  controller: locationSearchController,
+                  decoration: InputDecoration(
+                    prefixIcon: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.location_on,
+                      ),
+                    ),
+                    hintText: 'Search location',
+                    hintStyle: TT.f14w400Grey,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: Colors.grey, width: 2),
+                    ),
                   ),
                 ),
-                hintText: 'Search location',
-                hintStyle: TT.f14w400Grey,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: Colors.grey, width: 2),
-                ),
-              ),
-            )),
+              )),
+          // SizedBox(
+          //   width: 30,
+          // ),
+          Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30), color: Colors.grey),
+              child: Icon(Icons.person)),
+        ]),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 30),
           child: SingleChildScrollView(
@@ -43,8 +55,12 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                SizedBox(
+                  height: 50,
+                ),
                 Container(
                   height: 140,
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   decoration: BoxDecoration(
                       color: Color(0xffAAFF03),
                       borderRadius: BorderRadius.circular(20)),
@@ -75,7 +91,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 ),
                 Image.asset(
                   'assets/images/dashboardPic.png',
-                  height: 257,
+                  height: 150,
                 ),
                 SizedBox(
                   height: 49,
@@ -95,58 +111,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 SizedBox(
                   height: 50,
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     Container(
-                //       height: 63,
-                //       width: MediaQuery.of(context).size.width * 0.65,
-                //       decoration: BoxDecoration(
-                //           borderRadius: BorderRadius.circular(37),
-                //           border: Border.all(color: Color(0xff669902))),
-                //       alignment: Alignment.center,
-                //       child: Row(
-                //         children: [
-                //           SizedBox(
-                //             width: 22,
-                //           ),
-                //           Image.asset('assets/images/locIcon.png'),
-                //           SizedBox(
-                //             width: 10,
-                //           ),
-                //           Column(
-                //             mainAxisAlignment: MainAxisAlignment.center,
-                //             crossAxisAlignment: CrossAxisAlignment.start,
-                //             children: [
-                //               Row(
-                //                 children: [
-                //                   Text(
-                //                     'Home',
-                //                   ),
-                //                   SizedBox(
-                //                     width: 5,
-                //                   ),
-                //                   Image.asset('assets/images/dropDownIcon.png')
-                //                 ],
-                //               ),
-                //               Text(
-                //                 'Marvel Bakery, Nalanchira',
-                //               ),
-                //             ],
-                //           )
-                //         ],
-                //       ),
-                //     ),
-                //     SizedBox(
-                //       width: 19,
-                //     ),
-                //     Image.asset(
-                //       'assets/images/profileIcon.png',
-                //       width: 63,
-                //       height: 63,
-                //     )
-                //   ],
-                // ),
               ],
             ),
           ),
