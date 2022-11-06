@@ -1,3 +1,5 @@
+import 'package:application1/presentation/registration/registration.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/styles.dart';
@@ -28,15 +30,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                Image.asset('assets/images/login_screen_image.png'),
+                Image.asset(
+                  'assets/images/loginScreenImage.png',
+                  height: 235,
+                ),
                 SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
                 Form(
                   key: _mailvalidationKey,
                   child: TextFormField(
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xffEEEEEE),
                       border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(50)),
                       hintText: 'Enter your email',
                       hintStyle: TT.f14w400.copyWith(color: Colors.grey),
@@ -52,7 +60,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextFormField(
                     validator: (value) => textValidator(value, 'password'),
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xffEEEEEE),
                       border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(50)),
                       hintText: 'Enter your password',
                       hintStyle: TT.f14w400.copyWith(color: Colors.grey),
@@ -64,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Text(
                   'Forgot Password',
-                  style: TT.f14w400.copyWith(color: Color(0xff37B943)),
+                  style: TT.f14w400.copyWith(color: Color(0xff84C800)),
                 ),
                 SizedBox(
                   height: 20,
@@ -83,11 +94,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   child: Container(
                     height: 60,
-                    decoration: BoxDecoration(color: Color(0xff37B943)),
+                    decoration: BoxDecoration(
+                        color: Color(0xffAAFF03),
+                        borderRadius: BorderRadius.circular(50)),
                     alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     child: Text(
-                      'Login',
+                      'Sign in',
                       style: TT.f18w700White,
                     ),
                   ),
@@ -101,7 +114,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: 'Don\'t have an account?  ', style: TT.f14w400),
                   TextSpan(
                       text: 'Sign up',
-                      style: TT.f14w400.copyWith(color: Color(0xff37B943)))
+                      style: TT.f14w600.copyWith(color: Color(0xff84C800)),
+                      recognizer: new TapGestureRecognizer()
+                        ..onTap = () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => RegistrationScreen())))
                 ]))
               ],
             ),

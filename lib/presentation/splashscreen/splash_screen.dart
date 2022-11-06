@@ -17,21 +17,18 @@ class SplashScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "BINGO",
-                  style: TT.f36w700,
-                ),
+                Image.asset('assets/images/bingoMainLogo.png',height: 120,width: 276,),
                 SizedBox(
-                  height: 40,
+                  height: 10,
                 ),
                 Image.asset('assets/images/splashscreen_logo.png'),
                 SizedBox(
                   height: 20,
                 ),
                 Text(
-                  'BinGO is all about waste management. Here you’ll able to contact your nearest vendors.',
+                  'Connect with your nearest waste collecter and get them disposed effectively and efficiently',
                   textAlign: TextAlign.center,
-                  style: TT.f14w400,
+                  style: TT.f14w600,
                 ),
                 SizedBox(
                   height: 40,
@@ -46,13 +43,13 @@ class SplashScreen extends StatelessWidget {
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(2),
-                        color: Color(0xff37B943)),
+                        borderRadius: BorderRadius.circular(50),
+                        color: Color(0xffAAFF03)),
                     alignment: Alignment.center,
                     width: MediaQuery.of(context).size.width,
                     child: Text(
                       'Get Started',
-                      style: TT.f18w700White,
+                      style: TT.f18w600,
                     ),
                   ),
                 ),
